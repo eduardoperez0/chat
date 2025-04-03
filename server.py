@@ -20,7 +20,6 @@ def handle_client(client, clients):
                 print("Mensaje recibido:", message.decode('utf-8'))
                 broadcast(message, client, clients)
             else:
-                # Si no se recibe mensaje, se asume que la conexión se cerró
                 client.close()
                 if client in clients:
                     clients.remove(client)
@@ -32,8 +31,8 @@ def handle_client(client, clients):
             break
 
 def main():
-    host = '127.0.0.1'  # o la IP que desees usar
-    port = 5555       # puerto de conexión
+    host = '0.0.0.0'  # Escucha en todas las interfaces de red
+    port = 5555
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((host, port))
     server.listen(5)
