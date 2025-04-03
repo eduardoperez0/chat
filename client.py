@@ -13,7 +13,8 @@ def receive_messages(client):
             break
 
 def main():
-    host = 'IP_DEL_SERVIDOR'  # Reemplaza con la IP real de la máquina donde está el servidor
+    # Aquí pones la IP real del servidor
+    host = '192.168.1.10'
     port = 5555
 
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -23,7 +24,7 @@ def main():
         print("No se pudo conectar al servidor:", e)
         return
 
-    # Inicia un hilo para recibir mensajes del servidor
+    # Hilo para recibir mensajes
     thread = threading.Thread(target=receive_messages, args=(client,))
     thread.daemon = True
     thread.start()
